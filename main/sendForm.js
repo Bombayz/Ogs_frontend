@@ -26,7 +26,7 @@ $(document)
                             $
                                 .ajax({
                                     method: "POST",
-                                    url: "https://bayclouds/saveImg",
+                                    url: "https://bayclouds.com/saveImg",
                                     data: {
                                         "doc_id": doc_id,
                                         "file": arrImg
@@ -53,7 +53,7 @@ $(document)
                     console.log(dataJson)
 
                     $
-                        .ajax({method: "POST", url: "https://bayclouds/sendFormData", data: dataJson})
+                        .ajax({method: "POST", url: "https://bayclouds.com/sendFormData", data: dataJson})
                         .done(function (msg) {
                             if (msg.status == "ok") {
                                 swal('บันทึกสำเร็จแล้ว', 'รหัสของคุณคือ : ' + doc_id, 'success')
