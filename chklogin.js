@@ -7,7 +7,7 @@ function chklogin(params) {
     $("#btnLogin").addClass("loading");
 
     $
-        .ajax({method: "POST", url: "http://203.154.82.62/chklogin", data: dataJson})
+        .ajax({method: "POST", url: "https://bayclouds/chklogin", data: dataJson})
         .done(function (msg) {
             if (msg.status == "ok") {
                 localStorage.setItem("user_id", msg.user_id)

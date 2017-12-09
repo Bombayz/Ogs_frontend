@@ -2,7 +2,7 @@ $(document)
     .ready(function () {
         var table = $('#example').DataTable({
             ajax: {
-                url: 'http://203.154.82.62/getData/'+localStorage.getItem('user_id'),
+                url: 'https://bayclouds/getData/'+localStorage.getItem('user_id'),
                 dataSrc: 'data'
             },
             responsive: true,
@@ -28,7 +28,7 @@ $(document)
                 .row(this)
                 .data();
 
-            var url = "http://203.154.82.62/getImg/" + data.doc_id
+            var url = "https://bayclouds/getImg/" + data.doc_id
             $.get(url, function (data, status) {
                 // alert("Data: " + JSON.stringify(data) + " : " + status);
                 dataImg = data.data
@@ -39,7 +39,7 @@ $(document)
 
                     for (var key in dataImg) {
 
-                        srcImg = "<img  class='ui fluid image' src='http://203.154.82.62:9999/uploadsimg/" + dataImg[key]['filename'] + "'>"
+                        srcImg = "<img  class='ui fluid image' src='https://bayclouds:9999/uploadsimg/" + dataImg[key]['filename'] + "'>"
                         console.log(srcImg)
 
                         img = "<div style='width:100%' class='image'>" + srcImg + "</div>"
