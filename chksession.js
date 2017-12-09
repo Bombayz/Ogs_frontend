@@ -5,7 +5,7 @@ function chkSession(){
         alert("หลุดจากระบบค่ะ")
         window
         .location
-        .replace("../");
+        .replace("https://bayclouds.com");
     }
 }
 
