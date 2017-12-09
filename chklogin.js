@@ -15,7 +15,7 @@ function chklogin(params) {
                 if (localStorage.getItem('user_id')) {
                     window
                         .location
-                        .replace("https://bayclouds.com/main");
+                        .replace("https://ogs.co.th/main");
                 } else {
                     swal('คุณเข้าระบบผิดวิธีค่ะ', 'กรุณาแจ้ง ogs.co.th', 'error')
                 }
