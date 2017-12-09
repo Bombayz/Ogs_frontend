@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+  <title>โปรแกรมสำรวจ</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+  <div class="ui container" style="padding:3%">
+    <center>
+      <div id="clock" class="clock">loading ...</div>
+    </center>
+
+
+    <div class="ui card box-log">
+      <div class="content">
+        <div class="header">
+          <center>โปรแกรมสำรวจชุมชม</center>
+        </div>
+      </div>
+      <div class="content">
+        <div class="ui equal width grid">
+          <div class="column">
+            <div class="ui form">
+              <form>
+                <div class="field">
+                  <div class="ui left icon input">
+                    <input type="text" id="user" placeholder="ชื่อผู้ใช้งาน">
+                    <i class="user icon"></i>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="ui left icon input">
+                    <input type="password" id="password" placeholder="รหัสผ่าน">
+                    <i class="lock icon"></i>
+                  </div>
+                </div>
+                <center>
+                  <a href="#" onclick="chklogin()" id="btnLogin" class="ui blue submit button">เข้าสู่ระบบ</a>
+                </center>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</body>
+<style src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></style>
+<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<script src="./clock.js"></script>
+<script src="./chklogin.js"></script>
+
+</html>

@@ -1,0 +1,73 @@
+$(document)
+    .ready(function () {
+
+        $('#uploadForm')
+            .submit(function () {
+
+                var txt;
+                var r = confirm("คุณแน่ใจหรือไม่ค่ะ");
+                if (r == true) {
+                    var data = $('#formData').serializeArray()
+                    var dataJson = {}
+                    var doc_id = Math.floor((Math.random() * 9999) + 1000)
+
+                    $(this).ajaxSubmit({
+                        error: function (xhr) {
+                            console.log('Error: ' + xhr.status);
+                        },
+                        success: function (response) {
+                            console.log(response)
+                            var arrImg = []
+                            for (f = 0; f < response.file.length; f++) {
+                                arrImg.push(response.file[f])
+                            }
+
+                            console.log("arr IMG >>" + arrImg)
+                            $
+                                .ajax({
+                                    method: "POST",
+                                    url: "http://203.154.82.62/saveImg",
+                                    data: {
+                                        "doc_id": doc_id,
+                                        "file": arrImg
+                                    }
+                                })
+                                .done(function (msg) {
+                                    if (msg.status == "ok") {
+                                        console.log("Save IMG Ok")
+                                        $('#file1').val('')
+                                    } else {
+                                        console.log("Save IMG Fail")
+                                    }
+                                });
+                        }
+                    });
+
+                    $.each(data, function (key, value) {
+                        dataJson[value.name] = value.value
+                    });
+
+                    dataJson.doc_id = doc_id
+                    dataJson.user_id = localStorage.getItem('user_id')
+
+                    console.log(dataJson)
+
+                    $
+                        .ajax({method: "POST", url: "http://203.154.82.62/sendFormData", data: dataJson})
+                        .done(function (msg) {
+                            if (msg.status == "ok") {
+                                swal('บันทึกสำเร็จแล้ว', 'รหัสของคุณคือ : ' + doc_id, 'success')
+
+                            } else {
+                                alert("เกิดข้อผิดพลาด ในการบันทึกข้อมูล")
+                            }
+                        });
+
+                    return false;
+                } else {
+                    return false;
+                }
+
+            });
+
+    });

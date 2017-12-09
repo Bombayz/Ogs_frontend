@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script src="../chksession.js"></script>
+    <title>MainPage</title>
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+             * element that contains the map. */
+
+        #map {
+            height: 100%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            height: 500px;
+            width: auto;
+        }
+
+        .wd100 {
+            width: 100% !important;
+        }
+    </style>
+</head>
+
+<body onload="chkSession()">
+
+    <div class="ui secondary pointing menu">
+        <a href="#" class="item">
+            <i class="file outline icon"></i>บันทึกแบบฟอร์ม</a>
+        <a href="../search" class="item">
+            <i class="reply icon"></i>เรียกดูแบบฟอร์ม</a>
+
+        <div class="right menu">
+            <a onclick="logout()" href="#" class="item">
+                <i class="unlock icon"></i> (
+                <span id="name"></span> ) ออกจากระบบ</a>
+        </div>
+    </div>
+
+
+    <p>&nbsp</p>
+    <p>&nbsp</p>
+    <div class="ui container">
+        <div class="ui equal width grid">
+            <div class="column">
+                <div class="ui card wd100">
+                    <div class="content">
+                        <div class="header">แผนที่</div>
+                    </div>
+                    <div class="content">
+                        <div id="map"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui equal width grid">
+            <div class="column">
+                <div class="ui card wd100">
+                    <div class="content">
+                        <div class="header">แบบฟอร์ม</div>
+                    </div>
+                    <div class="content">
+                        <div class="ui form">
+                            <form id="formData">
+                                <div class="field">
+                                    <center>
+                                        <a href="#" id="btnSetCenter" onclick="setCenter()" class="ui secondary basic button">ค้นหาตำแหน่ง</a>
+                                    </center>
+                                </div>
+                                <div class="field">
+                                    ละติจูด
+                                    <input name="lat" type="text" id="lat" value="0" />
+                                </div>
+                                <div class="field">
+                                    ลองดิจูด
+                                    <input name="lon" type="text" id="lon" value="0" />
+                                </div>
+                                <div class="field">
+                                    <select name="moo" class="ui search dropdown">">
+                                        <option value="0">-- เลือกหมู่ --</option>
+                                        <option value="1">หมู่ 1</option>
+                                        <option value="2">หมู่ 2</option>
+                                        <option value="3">หมู่ 3</option>
+                                        <option value="4">หมู่ 4</option>
+                                        <option value="5">หมู่ 5</option>
+                                        <option value="6">หมู่ 6</option>
+                                        <option value="7">หมู่ 7</option>
+                                        <option value="8">หมู่ 8</option>
+                                        <option value="9">หมู่ 9</option>
+                                        <option value="10">หมู่ 10</option>
+                                        <option value="11">หมู่ 11</option>
+                                        <option value="12">หมู่ 12</option>
+                                        <option value="13">หมู่ 13</option>
+                                        <option value="14">หมู่ 14</option>
+                                        <option value="15">หมู่ 15</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <div class="ui input">
+                                        <input type="text" name="addr_no" placeholder="บ้านเลขที่">
+                                    </div>
+                                </div>
+
+                            </form>
+
+                            <br>
+
+                            <form id="uploadForm" action="http://203.154.82.62/upload" method='post' encType="multipart/form-data">
+                                <div class="field">
+                                    <div class="ui action input">
+                                        <input type="file" name="userPhoto" id="file1" placeholder="File 1" multiple>
+                                    </div>
+                                    <span id="status"></span>
+
+                                </div>
+
+                                <div class="field">
+                                    <div class="ui input">
+                                        <input type="text" name="time" id="time" placeholder="time" disabled>
+                                    </div>
+                                </div>
+                                <button type="submit" class="ui primary basic button">บันทึก</a>
+
+                            </form>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script src="./map.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgLCv-XHBu0nLkdkwnrCkaMQQ7sJbHmzg&callback=initMap" async
+    defer></script>
+<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+<script src="./sendForm.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        date = new Date
+        var today = date.getDate() + "/" + (date.getMonth() + 1) + "/" + (parseInt(date.getFullYear()) + 543)
+        $('#time').val(today)
+
+        $('#name').text(localStorage.getItem('name'))
+
+    });
+</script>
+
+</html>
