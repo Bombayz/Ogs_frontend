@@ -41,7 +41,7 @@
     <div class="ui secondary pointing menu">
         <a href="#" class="item">
             <i class="file outline icon"></i>บันทึกแบบฟอร์ม</a>
-        <a href="https://ogs.co.th/search" class="item">
+        <a href="../search" class="item">
             <i class="reply icon"></i>เรียกดูแบบฟอร์ม</a>
 
         <div class="right menu">
@@ -73,7 +73,7 @@
             <div class="column">
                 <div class="ui card wd100">
                     <div class="content">
-                        <div class="header">แบบฟอร์ม</div>
+                        <div class="header">แบบฟอร์ม 1.2</div>
                     </div>
                     <div class="content">
                         <div class="ui form">
@@ -91,6 +91,33 @@
                                     ลองดิจูด
                                     <input name="lon" type="text" id="lon" value="0" />
                                 </div>
+
+                                <div class="field">
+                                    <div class="inline fields">
+                                        <label for="asset_type">เลือกประเภทสินทรัพย์:</label>
+
+                                        <div class="field">
+                                            <div class="ui radio checkbox">
+                                                <input type="radio" name="asset_type" value="1" checked="" tabindex="0" class="hidden">
+                                                <label>ที่ดิน (ผท.1)</label>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <div class="ui radio checkbox">
+                                                <input type="radio" name="asset_type" value="2" tabindex="0" class="hidden">
+                                                <label>โรงเรือน (ผท.2)</label>
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <div class="ui radio checkbox">
+                                                <input type="radio" name="asset_type" value="3" tabindex="0" class="hidden">
+                                                <label>ป้าย (ผท. 3)</label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
                                 <div class="field">
                                     <select name="moo" class="ui search dropdown">">
                                         <option value="0">-- เลือกหมู่ --</option>
@@ -121,7 +148,7 @@
 
                             <br>
 
-                            <form id="uploadForm" action="https://bayclouds/upload" method='post' encType="multipart/form-data">
+                            <form id="uploadForm" action="https://bayclouds.com/upload" method='post' encType="multipart/form-data">
                                 <div class="field">
                                     <div class="ui action input">
                                         <input type="file" name="userPhoto" id="file1" placeholder="File 1" multiple>
@@ -135,7 +162,7 @@
                                         <input type="text" name="time" id="time" placeholder="time" disabled>
                                     </div>
                                 </div>
-                                <button type="submit" class="ui primary basic button">บันทึก</a>
+                                <button type="submit" id="save" class="ui primary basic button">บันทึก</a>
 
                             </form>
 
@@ -168,6 +195,9 @@
         $('#time').val(today)
 
         $('#name').text(localStorage.getItem('name'))
+
+        $('.ui.radio.checkbox')
+            .checkbox();
 
     });
 </script>

@@ -13,20 +13,23 @@ function chklogin(params) {
                 localStorage.setItem("user_id", msg.user_id)
                 localStorage.setItem("name", msg.name)
                 if (localStorage.getItem('user_id')) {
+                    $("#btnLogin").removeClass("loading");
                     window
                         .location
-                        .replace("https://ogs.co.th/main");
+                        .replace("./main");
+                        
                 } else {
                     swal('คุณเข้าระบบผิดวิธีค่ะ', 'กรุณาแจ้ง ogs.co.th', 'error')
                 }
             } else if (msg.status == "deny") {
                 swal('กรอกชื่อ/รหัส ผ่านผิดค่ะ', '', 'error')
+                $("#btnLogin").removeClass("loading");
             } else {
                 swal('เกิดปัญหาการส่งข้อมูลของระบบค่ะ', 'กรุณาแจ้ง ogs.co.th', 'error')
+                $("#btnLogin").removeClass("loading");
             }
         });
 
-    $("#btnLogin").removeClass("loading");
 
 }
 

@@ -4,6 +4,8 @@ $(document)
         $('#uploadForm')
             .submit(function () {
 
+                $("#save").addClass("loading");
+                 
                 var txt;
                 var r = confirm("คุณแน่ใจหรือไม่ค่ะ");
                 if (r == true) {
@@ -14,6 +16,7 @@ $(document)
                     $(this).ajaxSubmit({
                         error: function (xhr) {
                             console.log('Error: ' + xhr.status);
+                            $("#save").removeClass("loading");
                         },
                         success: function (response) {
                             console.log(response)
@@ -36,36 +39,59 @@ $(document)
                                     if (msg.status == "ok") {
                                         console.log("Save IMG Ok")
                                         $('#file1').val('')
+
+                                        $.each(data, function (key, value) {
+                                            dataJson[value.name] = value.value
+                                        });
+
+                                        dataJson.doc_id = doc_id
+                                        dataJson.user_id = localStorage.getItem('user_id')
+
+                                        console.log(dataJson)
+
+                                        $
+                                            .ajax({method: "POST", url: "https://bayclouds.com/sendFormData", data: dataJson})
+                                            .done(function (msg) {
+                                                if (msg.status == "ok") {
+                                                    swal('บันทึกสำเร็จแล้ว', 'รหัสของคุณคือ : ' + doc_id, 'success')
+                                                    $("#save").removeClass("loading");
+                                                } else {
+                                                    alert("เกิดข้อผิดพลาด ในการบันทึกข้อมูล")
+                                                    $("#save").removeClass("loading");
+                                                }
+                                            });
+
                                     } else {
-                                        console.log("Save IMG Fail")
+                                        console.log("No IMG Fail")
+                                        $.each(data, function (key, value) {
+                                            dataJson[value.name] = value.value
+                                        });
+
+                                        dataJson.doc_id = doc_id
+                                        dataJson.user_id = localStorage.getItem('user_id')
+
+                                        console.log(dataJson)
+
+                                        $
+                                            .ajax({method: "POST", url: "https://bayclouds.com/sendFormData", data: dataJson})
+                                            .done(function (msg) {
+                                                if (msg.status == "ok") {
+                                                    swal('บันทึกสำเร็จแล้ว', 'รหัสของคุณคือ : ' + doc_id, 'success')
+                                                    $("#save").removeClass("loading");
+                                                } else {
+                                                    alert("เกิดข้อผิดพลาด ในการบันทึกข้อมูล")
+                                                    $("#save").removeClass("loading");
+                                                }
+                                            });
                                     }
                                 });
                         }
                     });
 
-                    $.each(data, function (key, value) {
-                        dataJson[value.name] = value.value
-                    });
-
-                    dataJson.doc_id = doc_id
-                    dataJson.user_id = localStorage.getItem('user_id')
-
-                    console.log(dataJson)
-
-                    $
-                        .ajax({method: "POST", url: "https://bayclouds.com/sendFormData", data: dataJson})
-                        .done(function (msg) {
-                            if (msg.status == "ok") {
-                                swal('บันทึกสำเร็จแล้ว', 'รหัสของคุณคือ : ' + doc_id, 'success')
-
-                            } else {
-                                alert("เกิดข้อผิดพลาด ในการบันทึกข้อมูล")
-                            }
-                        });
-
                     return false;
                 } else {
                     return false;
+                    $("#save").removeClass("loading");
                 }
 
             });

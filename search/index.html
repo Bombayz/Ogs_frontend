@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.semanticui.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.0/css/responsive.dataTables.min.css">
     <script src="../chksession.js"></script>
     <title>Search Page</title>
@@ -22,7 +23,7 @@
 <body onload="chkSession()">
 
     <div class="ui secondary pointing menu">
-        <a href="https://ogs.co.th/main" class="item">
+        <a href="../main" class="item">
             <i class="file outline icon"></i>บันทึกแบบฟอร์ม</a>
         <a href="#" class="item">
             <i class="reply icon"></i>เรียกดูแบบฟอร์ม</a>
@@ -47,9 +48,99 @@
         </div>
     </div>
 
+    <div class="ui ai modal">
+        <i class="close icon"></i>
+        <div class="header">
+            แก้ไขแบบฟอร์มรหัส :
+            <span id="editModal"></span>
+        </div>
+        <div class="content">
+            <form id="sendEditForm">
+                <div class="ui form">
+                    <div class="field">
+                        ละติจูด
+                        <input name="lat" type="text" id="lat" value="0" />
+                    </div>
+                    <div class="field">
+                        ลองดิจูด
+                        <input name="lon" type="text" id="lon" value="0" />
+                    </div>
+
+                    <div class="field">
+                        <div class="inline fields">
+                            <label for="asset_type">เลือกประเภทสินทรัพย์:</label>
+
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="asset_type" id="r1" value="1" checked="" tabindex="0" class="hidden">
+                                    <label>ที่ดิน (ผท.1)</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="asset_type" id="r2" value="2" tabindex="0" class="hidden">
+                                    <label>โรงเรือน (ผท.2)</label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio"   name="asset_type" id="r3" value="3" tabindex="0" class="hidden">
+                                    <label>ป้าย (ผท. 3)</label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <select name="moo" id="moo" class="ui search dropdown">">
+                            <option value="">-- เลือกหมู่ --</option>
+                            <option value="1">หมู่ 1</option>
+                            <option value="2">หมู่ 2</option>
+                            <option value="3">หมู่ 3</option>
+                            <option value="4">หมู่ 4</option>
+                            <option value="5">หมู่ 5</option>
+                            <option value="6">หมู่ 6</option>
+                            <option value="7">หมู่ 7</option>
+                            <option value="8">หมู่ 8</option>
+                            <option value="9">หมู่ 9</option>
+                            <option value="10">หมู่ 10</option>
+                            <option value="11">หมู่ 11</option>
+                            <option value="12">หมู่ 12</option>
+                            <option value="13">หมู่ 13</option>
+                            <option value="14">หมู่ 14</option>
+                            <option value="15">หมู่ 15</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <div class="ui input">
+                            <input type="text" id="addr_no" name="addr_no" placeholder="บ้านเลขที่">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="actions">
+            <div class="ui cancel button">ยกเลิก</div>
+            <div id="btnEdit" class="ui orange button">แก้ไข</div>
+        </div>
+    </div>
+
     <p>&nbsp</p>
     <p>&nbsp</p>
     <div class="ui container">
+
+        <div class="ui segment">
+            <div class="field">
+                <select style="width:100%" id="selAssetType" name="Select_asset_type" class="ui search dropdown">">
+                    <option value="0">-- เลือกประเภททรัพย์สิน --</option>
+                    <option value="1"> ที่ดิน (ผท.1) </option>
+                    <option value="2"> โรงเรือน (ผท.2) </option>
+                    <option value="3"> ป้าย (ผท. 3) </option>
+                </select>
+            </div>
+        </div>
+
         <div class="ui equal width grid">
             <div class="column">
                 <div class="ui card wd100">
@@ -57,7 +148,7 @@
                         <div class="header">ค้นหาข้อมูลแบบฟอร์ม</div>
                     </div>
                     <div class="content">
-                        <table id="example" class="display" cellspacing="0" width="100%">
+                        <table id="example" style="overflow-x:auto;" class="ui celled" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
                                     <th>หมุ่</th>
@@ -65,11 +156,10 @@
                                     <th>ละติจูด</th>
                                     <th>ลองดิจูด</th>
                                     <th>รหัสเอกสาร</th>
+                                    <th>การกระทำ</th>
                                 </tr>
                             </thead>
-
                         </table>
-
                     </div>
                 </div>
             </div>
@@ -77,24 +167,13 @@
 
     </div>
 
-    <!-- <div class="ui modal">
-        <i class="close icon"></i>
-        <div class="header">
-            รูปภาพการสำรวจ หมายเลข
-            <span id="hDoc_id"></span>
-        </div>
-        <div class="image content">
-            <div style="width:100%" class="ui medium image" id="showImg">
-            </div>
-        </div>
-
-    </div> -->
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.semanticui.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.0/js/dataTables.responsive.min.js"></script>
 <script src="./getForm.js"></script>
 <script>
@@ -102,7 +181,10 @@
         $('#name').text(localStorage.getItem('name'))
         $('.ui.labeled.icon.sidebar')
             .sidebar('toggle');
+
+        $('.ui.radio.checkbox')
+            .checkbox();
     });
 </script>
-
+<script src="../coreFuntion.js"></script>
 </html>

@@ -100,10 +100,12 @@ function setCenter() {
 
             }, function () {
                 alert("อุปกรณ์ของคุณไม่สนับสนุนระบบ GPS Geolocation")
+                $("#btnSetCenter").removeClass("loading");
             });
     } else {
         // Browser doesn't support Geolocation
         alert("อุปกรณ์ของคุณไม่สนับสนุนระบบ GPS Geolocation")
+        $("#btnSetCenter").removeClass("loading");
     }
 
 }
