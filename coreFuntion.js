@@ -13,3 +13,9 @@ function gForm(form) {
     return dataJson
 }
 
+
+function openSidebar() {
+    $('.ui.sidebar')
+    .sidebar('toggle')
+  ;
+}

@@ -38,17 +38,24 @@
 
 <body onload="chkSession()">
 
-    <div class="ui secondary pointing menu">
+    <div class="ui top fixed menu">
+        <a class="item" onclick="openSidebar()">
+            <i class="sidebar icon"></i>
+        </a>
+        <a href="#" class="item">
+                <h3>หน้าบันทึกแบบฟอร์ม</h3>
+            </a>
+    </div>
+
+    <div class="ui sidebar inverted vertical menu">
         <a href="#" class="item">
             <i class="file outline icon"></i>บันทึกแบบฟอร์ม</a>
         <a href="../search" class="item">
             <i class="reply icon"></i>เรียกดูแบบฟอร์ม</a>
 
-        <div class="right menu">
-            <a onclick="logout()" href="#" class="item">
-                <i class="unlock icon"></i> (
-                <span id="name"></span> ) ออกจากระบบ</a>
-        </div>
+        <a onclick="logout()" href="#" class="item">
+            <i class="unlock icon"></i> (
+            <span id="name"></span> ) ออกจากระบบ</a>
     </div>
 
 
@@ -186,6 +193,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
 <script src="./sendForm.js"></script>
+<script src="../coreFuntion.js"></script>
 
 <script>
     $(document).ready(function () {
