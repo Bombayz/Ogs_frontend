@@ -1,19 +1,21 @@
 var map;
-var uluru = {
-    lat: 16.439625,
-    lng: 102.828728
-};
+// var uluru = {     lat: 16.439625,     lng: 102.828728 };
+// console.log(point.Apt_tapa)
+
+uluru = {
+    lat: point.Apt_tapa.lat,
+    lng: point.Apt_tapa.lon
+}
 
 // var marker = []
 var gmarkers = []
-
 
 function initMap() {
     map = new google
         .maps
         .Map(document.getElementById('map'), {
-            center:  uluru,
-            zoom: 10
+            center: uluru,
+            zoom: 14
         });
 
     var marker = new google
@@ -36,7 +38,7 @@ function initMap() {
 
             $("#lat").val(my_Point.lat()); // เอาค่า latitude ตัว marker แสดงใน textbox id=lat
             $("#lon").val(my_Point.lng()); // เอาค่า longitude ตัว marker แสดงใน textbox id=lon
-        });   
+        });
 }
 
 function clearMarkers() {

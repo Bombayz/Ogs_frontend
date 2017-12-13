@@ -3,12 +3,11 @@ $(document)
 
         $('#uploadForm')
             .submit(function () {
-
-                $("#save").addClass("loading");
                  
                 var txt;
                 var r = confirm("คุณแน่ใจหรือไม่ค่ะ");
                 if (r == true) {
+                    $("#save").addClass("loading");
                     var data = $('#formData').serializeArray()
                     var dataJson = {}
                     var doc_id = Math.floor((Math.random() * 9999) + 1000)
@@ -90,6 +89,7 @@ $(document)
 
                     return false;
                 } else {
+                    $("#save").removeClass("loading");
                     return false;
                     $("#save").removeClass("loading");
                 }

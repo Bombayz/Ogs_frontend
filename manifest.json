@@ -1,0 +1,27 @@
+{
+    "name": "โปรแกรมสำรวจชุมชน",
+    "short_name": "สำรวจชุมชน",
+    "icons": [{
+      "src": "img/logo.jpg",
+        "sizes": "128x128",
+        "type": "image/jpg"
+      }, {
+        "src": "img/logo.jpg",
+        "sizes": "144x144",
+        "type": "image/jpg"
+      }, {
+        "src": "img/logo.jpg",
+        "sizes": "152x152",
+        "type": "image/jpg"
+      }, {
+        "src": "img/logo.jpg",
+        "sizes": "192x192",
+        "type": "image/jpg"
+      }, {
+        "src": "img/logo.jpg",
+        "sizes": "256x256",
+        "type": "image/jpg"
+      }],
+    "start_url": "./index.html",
+    "display": "standalone"
+  }

@@ -39,11 +39,11 @@ $(document)
             ]
         });
 
-        setInterval(function () {
-            table
-                .ajax
-                .reload();
-        }, 3000);
+        // setInterval(function () {
+        //     table
+        //         .ajax
+        //         .reload();
+        // }, 3000);
 
         $("#selAssetType").change(function () {
             // console.log($( "#selAssetType option:selected" ).val())
@@ -165,6 +165,7 @@ function sendEditData(form, doc_id, old_addr_no) {
                 swal('แก้ไขสำเร็จแล้ว', '', 'success')
                 $("#btnEdit").removeClass("loading");
                 $('.ai.modal').modal('hide');
+                $('#example').DataTable().ajax.reload();
             } else {
                 alert("เกิดข้อผิดพลาด ในการบันทึกข้อมูล")
                 $("#btnEdit").removeClass("loading");
@@ -190,6 +191,7 @@ function delData(doc_id, old_addr_no) {
                     swal('ลบสำเร็จแล้ว', '', 'success')
                     // $("#btnEdit").removeClass("loading");
                     $('.ai.modal').modal('hide');
+                    $('#example').DataTable().ajax.reload();
                 } else {
                     alert("เกิดข้อผิดพลาด ในการบันทึกข้อมูล")
                     // $("#btnEdit").removeClass("loading");
